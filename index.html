@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Para Nalu</title>
+    <style>
+        /* --- Configurações Gerais --- */
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Georgia', serif;
+            background-color: #ffe6ea;
+            color: #8a2345;
+            text-align: center;
+            overflow-x: hidden;
+            min-height: 100vh;
+        }
+
+        /* --- TELA 1: A CARTA E O PEDIDO --- */
+        #screen-initial {
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .card {
+            background-color: white;
+            border-radius: 20px;
+            padding: 30px 20px;
+            max-width: 500px;
+            width: 90%;
+            box-shadow: 0 4px 15px rgba(138, 35, 69, 0.1);
+            margin-bottom: 30px;
+        }
+
+        .heart-icon {
+            color: #ff4d6d;
+            font-size: 3em;
+            margin-bottom: 10px;
+            display: block;
+        }
+
+        h1 {
+            font-size: 1.8em;
+            margin-bottom: 20px;
+            color: #c2185b;
+        }
+
+        p {
+            font-size: 1.1em;
+            line-height: 1.6;
+            margin-bottom: 15px;
+            text-align: left;
+            text-indent: 15px;
+        }
+
+        /* Bloco da Pergunta */
+        .proposal-block {
+            max-width: 500px;
+            width: 100%;
+            margin-top: 20px;
+            margin-bottom: 100px;
+        }
+
+        .proposal-question {
+            font-size: 1.4em;
+            font-weight: bold;
+            color: #d81b60;
+            margin-bottom: 10px;
+        }
+
+        .ps-note {
+            font-size: 0.9em;
+            font-style: italic;
+            color: #e91e63;
+            margin-bottom: 30px;
+            opacity: 0.8;
+        }
+
+        /* --- BOTÕES --- */
+        .buttons-wrapper {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            align-items: center;
+            position: relative;
+            height: 60px;
+        }
+
+        .btn {
+            padding: 12px 30px;
+            font-size: 1.1em;
+            border: none;
+            border-radius: 50px;
+            cursor: pointer;
+            font-family: 'Georgia', serif;
+            transition: transform 0.2s;
+            white-space: nowrap;
+        }
+
+        .btn-sim {
+            background-color: #ff4d6d;
+            color: white;
+            box-shadow: 0 4px 10px rgba(255, 77, 109, 0.4);
+            z-index: 10;
+        }
+
+        .btn-sim:active {
+            transform: scale(0.95);
+        }
+
+        .btn-nao {
+            background-color: #e0e0e0;
+            color: #555;
+            position: relative;
+            z-index: 100;
+        }
+
+        /* --- TELA 2: A RESPOSTA --- */
+        #screen-success {
+            display: none;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            padding: 40px 20px;
+            background-color: #ffe6ea;
+            position: relative;
+            box-sizing: border-box;
+        }
+
+        .success-card {
+            background-color: rgba(255, 255, 255, 0.9);
+            border-radius: 20px;
+            padding: 40px 20px;
+            max-width: 500px;
+            width: 90%;
+            box-shadow: 0 4px 20px rgba(138, 35, 69, 0.15);
+            z-index: 10;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .signature {
+            font-size: 1.3em;
+            font-weight: bold;
+            color: #c2185b;
+            margin-bottom: 30px;
+            line-height: 1.5;
+        }
+
+        .photo-gallery {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 20px;
+            margin: 10px 0 30px 0;
+            width: 100%;
+        }
+
+        .photo-gallery img {
+            width: 80%;
+            max-width: 300px;
+            height: auto;
+            border-radius: 15px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+            border: 4px solid white;
+        }
+
+        .final-message {
+            font-size: 1.6em;
+            color: #d81b60;
+            margin-top: 10px;
+            font-weight: bold;
+        }
+
+        /* --- PÉTALAS --- */
+        .petal {
+            position: absolute;
+            background-color: #ffc1cc;
+            border-radius: 150% 0 150% 0;
+            animation: fall linear infinite;
+            z-index: 1;
+        }
+
+        @keyframes fall {
+            0% { transform: translate(0, -10vh) rotate(0deg); opacity: 1; }
+            100% { transform: translate(-20px, 110vh) rotate(360deg); opacity: 0; }
+        }
+
+    </style>
+</head>
+<body>
+
+    <div id="screen-initial">
+        
+        <div class="card">
+            <span class="heart-icon">❤</span>
+            <h1>Ma douce Nalu,</h1>
+
+            <p>Engraçado como o tempo passa tão rápido, né? Nos conhecemos em Abril e passou rápido demais. Estou tão nostálgica com a época que nos conhecemos, estou toda sentida aqui enquanto relembro. Eu percebi que fui uma grande idiota quando me afastei por pensar que não gostava de mim e que não queria nada comigo, percebi que agi tão mal contigo e que nossos momentos eram os melhores até a gente se desentender, mas isso não é o foco no momento.</p>
+            
+            <p>Então, Nalu, passamos por tantas coisas juntas, tantos sentimentos, compartilhamos vários momentos entre nós, conversas, passamos horas acordadas apenas esperando a outra chegar. E pensar que brigamos por uma coisa tão besta, mas isso foi "bom" por um lado, pois as coisas estavam indo de mal a pior na época. Esse tempo longe mais esse reencontro fez com que eu pensasse bastante a respeito sobre nós, sobre nossos sentimentos, momentos e afins. Quando percebi que é recíproco, você não sabe o quão feliz eu fiquei.</p>
+            
+            <p>Você é o tipo de garota que eu sempre pedi para que entrasse na minha vida para ser o meu amor, ou seja, a garota dos meus sonhos. Hoje já não tenho mais medo de me entregar a você ou medo do que possa acontecer no futuro, sabe? Quando você voltou, me senti bem com isso, confortável com a ideia de tê-la em minha vida novamente. Esses vários dias que estamos conversando também me fez perceber que meu coração pertence a você, acredito que sempre tenha pertencido e só eu não percebi e ignorei os sinais por medo e insegurança. Já não me sinto mais assim contigo, eu confio em você e no seu amor.</p>
+            
+            <p>Enfim, você sabe bem que não sou uma pessoa fácil de lidar, mas que eu vou fazer de tudo para cuidar bem de você e para estarmos bem e confortáveis. Quero muito ser uma ótima pessoa para você e esquecer aquele passado negativo, onde não conseguíamos falar a língua uma da outra, onde existia aquele buraco enorme. Agora parece aquele buraco se completou e que conseguimos conversar no mesmo idioma, acredito que tudo aconteceu como tinha que acontecer. Obrigada por ser tão paciente comigo, por ser tão gentil e adorável. Eu te amo.</p>
+        </div>
+
+        <div class="proposal-block">
+            <div class="proposal-question">
+                Dito isso, tenho uma pergunta para fazer...<br>
+                Querida, Nalu, você aceita ser a minha namorada?
+            </div>
+            
+            <div class="ps-note">
+                P.s. como diria Chuu em heart attack: You attack my heart.
+            </div>
+
+            <div class="buttons-wrapper">
+                <button class="btn btn-sim" onclick="aceitarPedido()">Sim, eu aceito!</button>
+                <button class="btn btn-nao" id="btnNao" onmouseover="fugir()" onclick="fugir()">Não</button>
+            </div>
+            
+            <p style="font-size: 0.8em; color: #aaa; margin-top: 15px;">(O botão de "não" está meio tímido hoje...)</p>
+        </div>
+    </div>
+
+
+    <div id="screen-success">
+        <div class="success-card">
+            
+            <div class="signature">
+                Avec tout mon amour,<br>
+                Bell.
+            </div>
+
+            <div class="photo-gallery">
+                <img src="foto1.jpg" alt="Nós">
+                <img src="foto2.jpg" alt="Nós">
+                <img src="foto3.jpg" alt="Nós">
+                <img src="foto4.jpg" alt="Nós">
+                <img src="foto5.jpg" alt="Nós">
+                <img src="foto6.jpg" alt="Nós">
+            </div>
+
+            <div class="final-message">
+                Je t'aime de tout mon cœur ❤
+            </div>
+        </div>
+    </div>
+
+
+    <script>
+        function fugir() {
+            const btnNao = document.getElementById("btnNao");
+            btnNao.style.position = "fixed";
+            const larguraTela = window.innerWidth;
+            const alturaTela = window.innerHeight;
+            const novoLeft = Math.random() * (larguraTela - 100) + 20;
+            const novoTop = Math.random() * (alturaTela - 100) + 20;
+            btnNao.style.left = novoLeft + "px";
+            btnNao.style.top = novoTop + "px";
+        }
+
+        function aceitarPedido() {
+            document.getElementById("screen-initial").style.display = "none";
+            document.getElementById("screen-success").style.display = "flex";
+            criarPetalas();
+            window.scrollTo(0,0);
+        }
+
+        function criarPetalas() {
+            const container = document.getElementById("screen-success");
+            const cores = ['#ff4d6d', '#ff8fa3', '#ffc2d1', '#fff0f3'];
+            setInterval(() => {
+                const petala = document.createElement("div");
+                petala.classList.add("petal");
+                petala.style.left = Math.random() * 100 + "vw";
+                const tamanho = Math.random() * 15 + 10 + "px";
+                petala.style.width = tamanho;
+                petala.style.height = tamanho;
+                petala.style.backgroundColor = cores[Math.floor(Math.random() * cores.length)];
+                petala.style.animationDuration = Math.random() * 3 + 2 + "s";
+                container.appendChild(petala);
+                setTimeout(() => { petala.remove(); }, 5000);
+            }, 200);
+        }
+    </script>
+</body>
+</html>
